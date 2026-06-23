@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel", "build"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "acrolint"
+version = "0.0.0"
+description = "A linting tool for acronyms (placeholder)."
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [ { name = "<Your Name>", email = "you@example.com" } ]
+license = { text = "MIT" }
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+
+[tool.ruff]
+line-length = 88
+extend-select = ["E", "F", "I", "W"]
