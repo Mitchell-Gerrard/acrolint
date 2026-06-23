@@ -1,87 +1,138 @@
 {
     "SSH": {
         "definition": null,
-        "first_usage": 78,
+        "first_usage": [
+            78,
+            "tests/test_files/main.tex"
+        ],
         "defined": false
     },
     "AI": {
         "definition": "Artificial Intelligence",
-        "first_usage": 18,
+        "first_usage": [
+            18,
+            "tests/test_files/main.tex"
+        ],
         "defined": true
     },
     "ML": {
         "definition": "Machine Learning",
-        "first_usage": 22,
+        "first_usage": [
+            22,
+            "tests/test_files/main.tex"
+        ],
         "defined": true
     },
     "API": {
         "definition": "Application Programming Interface",
-        "first_usage": 26,
+        "first_usage": [
+            26,
+            "tests/test_files/main.tex"
+        ],
         "defined": true
     },
     "LAN": {
         "definition": "Local Area Network",
-        "first_usage": 36,
+        "first_usage": [
+            36,
+            "tests/test_files/main.tex"
+        ],
         "defined": true
     },
     "WAN": {
         "definition": "Wide Area Network",
-        "first_usage": 36,
+        "first_usage": [
+            36,
+            "tests/test_files/main.tex"
+        ],
         "defined": true
     },
     "DBMS": {
         "definition": "Database Management System",
-        "first_usage": 39,
+        "first_usage": [
+            39,
+            "tests/test_files/main.tex"
+        ],
         "defined": true
     },
     "AWS": {
         "definition": "Amazon Web Services",
-        "first_usage": 40,
+        "first_usage": [
+            40,
+            "tests/test_files/main.tex"
+        ],
         "defined": true
     },
     "GCP": {
         "definition": "Google Cloud Platform",
-        "first_usage": 41,
+        "first_usage": [
+            41,
+            "tests/test_files/main.tex"
+        ],
         "defined": true
     },
     "CPU": {
         "definition": "Central Processing Unit",
-        "first_usage": 43,
+        "first_usage": [
+            43,
+            "tests/test_files/main.tex"
+        ],
         "defined": true
     },
     "GPU": {
         "definition": "Graphics Processing Unit",
-        "first_usage": 43,
+        "first_usage": [
+            43,
+            "tests/test_files/main.tex"
+        ],
         "defined": true
     },
     "HTTP": {
         "definition": "HyperText Transfer Protocol",
-        "first_usage": 49,
+        "first_usage": [
+            49,
+            "tests/test_files/main.tex"
+        ],
         "defined": true
     },
     "SSL": {
         "definition": "Secure Sockets Layer",
-        "first_usage": 50,
+        "first_usage": [
+            50,
+            "tests/test_files/main.tex"
+        ],
         "defined": true
     },
     "TLS": {
         "definition": "Transport Layer Security",
-        "first_usage": 51,
+        "first_usage": [
+            51,
+            "tests/test_files/main.tex"
+        ],
         "defined": true
     },
     "TCP": {
         "definition": "Transmission Control Protocol",
-        "first_usage": 53,
+        "first_usage": [
+            53,
+            "tests/test_files/main.tex"
+        ],
         "defined": true
     },
     "IP": {
         "definition": "Internet Protocol",
-        "first_usage": 53,
+        "first_usage": [
+            53,
+            "tests/test_files/main.tex"
+        ],
         "defined": true
     },
     "DNS": {
         "definition": "Domain Name System",
-        "first_usage": 54,
+        "first_usage": [
+            54,
+            "tests/test_files/main.tex"
+        ],
         "defined": true
     }
 }

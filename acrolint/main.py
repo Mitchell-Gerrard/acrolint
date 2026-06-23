@@ -45,7 +45,7 @@ def collect_acronyms(text):
     
     # Simple regex to find acronyms (uppercase letters)
     return regex_extract(r'\b[A-Z]{2,}\b', text)
-def find_acronym_definitions(text):
+def find_acronym_definitions(files):
     """
     Finds acronym definitions in the given text.
 
@@ -55,16 +55,22 @@ def find_acronym_definitions(text):
     Returns:
         list: A list of all acronym definitions found.
     """
-    patterns = [
-    r'([A-Z][A-Za-z\s\-&]+)\s*\(([A-Z]{2,10})\)',
-    r'\b([A-Z]{2,10})\s*\(([A-Z][A-Za-z\s\-&]+)\)']
     results = []
-    for pattern in patterns:
-        results.extend(regex_extract(pattern, text))
+    for file in files:
+        text = file_text_extract(file)
+        patterns = [
+        r'([A-Z][A-Za-z\s\-&]+)\s*\(([A-Z]{2,10})\)',
+        r'\b([A-Z]{2,10})\s*\(([A-Z][A-Za-z\s\-&]+)\)']
+        for pattern in patterns:
+            results.extend(regex_extract(pattern, text))
     return results
 
-def find_undefined_acronyms(text, defined_acronyms):
-    all_acronyms = collect_acronyms(text)
+
+def find_undefined_acronyms(files, defined_acronyms):
+    all_acronyms = []
+    for file in files:
+        text = file_text_extract(file)
+        all_acronyms.extend(collect_acronyms(text))
     all_unique_acronyms = set(all_acronyms)
     defined_acronyms_short = [acronym[0] for acronym in defined_acronyms]
 
@@ -74,6 +80,7 @@ def index_to_line(text, index):
 def firstusage(files, pattern):
     result = []
     for file in files:
+        print(file)
         text = file_text_extract(file)
 
         for match in re.finditer(pattern, text):
@@ -83,7 +90,7 @@ def firstusage(files, pattern):
                 
         if match:
             break  # Stop searching after the first match in the current file
-    return result[0]
+    return result[0], file
 def output_file(file_path, orgonised_data):
     if file_path.endswith(".json"):
         import json
@@ -99,45 +106,41 @@ def acrolint(file_paths):
         dict: A dictionary containing acronyms, their definitions, and first usage information.
     """
     orgonised_data = {}
-    for file_path in file_paths:
-        text = file_text_extract(file_path)
-        acronyms = find_acronym_definitions(text)
-        undefined_acronyms = find_undefined_acronyms(text, acronyms)
+    acronyms = find_acronym_definitions(file_paths)
+    undefined_acronyms = find_undefined_acronyms(file_paths, acronyms)
 
-        for acronym in undefined_acronyms:
-            first_usage = firstusage([file_path], r'\b' + re.escape(acronym) + r'\b')
-            orgonised_data[acronym] = {
-                "definition": None,
-                "first_usage": first_usage,
-                "defined": False
-            }
+    for acronym in undefined_acronyms:
+        first_usage = firstusage(file_paths, r'\b' + re.escape(acronym) + r'\b')
+        orgonised_data[acronym] = {
+            "definition": None,
+            "first_usage": first_usage,
+            "defined": False
+        }
 
-        for acronym in acronyms:
-            first_usage = firstusage([file_path], r'\b' + re.escape(acronym[0]) + r'\b')
-            orgonised_data[acronym[0]] = {
-                "definition": acronym[1],
-                "first_usage": first_usage,
-                "defined": True
-            }
+    for acronym in acronyms:
+        first_usage = firstusage(file_paths, r'\b' + re.escape(acronym[0]) + r'\b')
+        orgonised_data[acronym[0]] = {
+            "definition": acronym[1],
+            "first_usage": first_usage,
+            "defined": True
+        }
     return orgonised_data
 
 def main():
     # Example usage
-    file_path = "tests/test_files/main.tex"  # Replace with your file path
-    text = file_text_extract(file_path)
-    acronyms = find_acronym_definitions(text)
-    undefined_acronyms = find_undefined_acronyms(text, acronyms)
+    file_paths = ["tests/test_files/main.tex"]  # Replace with your file paths
+    acronyms = find_acronym_definitions(file_paths)
+    undefined_acronyms = find_undefined_acronyms(file_paths, acronyms)
     orgonised_data = {}
     for acronym in undefined_acronyms:
-    
-        first_usage = firstusage([file_path], r'\bAI\b')
+        first_usage = firstusage(file_paths, r'\b' + re.escape(acronym) + r'\b')
         orgonised_data[acronym] = {
             "definition": None,
             "first_usage": first_usage,
             "defined": False
         }
     for acronym in acronyms:
-        first_usage = firstusage([file_path], r'\b' + re.escape(acronym[0]) + r'\b')
+        first_usage = firstusage(file_paths, r'\b' + re.escape(acronym[0]) + r'\b')
         orgonised_data[acronym[0]] = {
             "definition": acronym[1],
             "first_usage": first_usage,
