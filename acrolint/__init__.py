@@ -1,4 +1,2 @@
-"""acrolint package."""
-
-__all__ = ["__version__"]
-__version__ = "0.0.0"
+from .main import acrolint
+from .main import output_file

@@ -1,5 +1,7 @@
-from acrolint import __version__
+from acrolint import acrolint
+from acrolint import output_file
 
 
-def test_version():
-    assert isinstance(__version__, str)
+acros=acrolint(["tests/test_files/main.tex"])
+print(acros)
+output_file("tests/test_files/output.json", acros)

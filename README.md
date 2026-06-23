@@ -1,34 +1,32 @@
-# acrolint
+# Acrolint
 
-A linting tool for acronyms (project scaffold).
+**Acrolint** is a extreamly light weight python library for extraction of acronyms used in your latex and text files, that grow to long to remeber where you used your BUAs (Big Ugly Actonyms)
 
-## Development
+---
 
-Create a virtual environment and install dev requirements:
+## ✨ Features
+- Extracting both the acrronyms and the deffintions for filling in any acronym pages to your work
+- Detect any acronyms you did not define all the UDAs
+- Track where they are first used sao you can fill in the deffinions or check they are deffomed were thy are firt used in your multi file project
+- Suports multiple files
+- JSON file output for the ability to store all of your acronyms and to enable down stream anaylysis
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements-dev.txt
-```
+---
 
-Run formatting and linting:
-
-```bash
-pre-commit run --all-files
-``` 
-
-Run tests:
+## 📦 Installation
 
 ```bash
-pytest
-```
+pip install acrolint
 
-Build and publish (after tagging a release):
+## 💨 Fast start
+from acrolint import acrolint, output_file
 
-```bash
-python -m build
-python -m twine upload dist/*
-```
+files = [
+    "chapter1.tex",
+    "chapter2.tex",
+    "chapter3.tex"
+]
 
-On GitHub Actions, set the `PYPI_API_TOKEN` secret to publish automatically when pushing a tag `v*`.
+result = acrolint(files)
+
+output_file(result, "acronyms.json")

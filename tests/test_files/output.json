@@ -1,0 +1,87 @@
+{
+    "SSH": {
+        "definition": null,
+        "first_usage": 78,
+        "defined": false
+    },
+    "AI": {
+        "definition": "Artificial Intelligence",
+        "first_usage": 18,
+        "defined": true
+    },
+    "ML": {
+        "definition": "Machine Learning",
+        "first_usage": 22,
+        "defined": true
+    },
+    "API": {
+        "definition": "Application Programming Interface",
+        "first_usage": 26,
+        "defined": true
+    },
+    "LAN": {
+        "definition": "Local Area Network",
+        "first_usage": 36,
+        "defined": true
+    },
+    "WAN": {
+        "definition": "Wide Area Network",
+        "first_usage": 36,
+        "defined": true
+    },
+    "DBMS": {
+        "definition": "Database Management System",
+        "first_usage": 39,
+        "defined": true
+    },
+    "AWS": {
+        "definition": "Amazon Web Services",
+        "first_usage": 40,
+        "defined": true
+    },
+    "GCP": {
+        "definition": "Google Cloud Platform",
+        "first_usage": 41,
+        "defined": true
+    },
+    "CPU": {
+        "definition": "Central Processing Unit",
+        "first_usage": 43,
+        "defined": true
+    },
+    "GPU": {
+        "definition": "Graphics Processing Unit",
+        "first_usage": 43,
+        "defined": true
+    },
+    "HTTP": {
+        "definition": "HyperText Transfer Protocol",
+        "first_usage": 49,
+        "defined": true
+    },
+    "SSL": {
+        "definition": "Secure Sockets Layer",
+        "first_usage": 50,
+        "defined": true
+    },
+    "TLS": {
+        "definition": "Transport Layer Security",
+        "first_usage": 51,
+        "defined": true
+    },
+    "TCP": {
+        "definition": "Transmission Control Protocol",
+        "first_usage": 53,
+        "defined": true
+    },
+    "IP": {
+        "definition": "Internet Protocol",
+        "first_usage": 53,
+        "defined": true
+    },
+    "DNS": {
+        "definition": "Domain Name System",
+        "first_usage": 54,
+        "defined": true
+    }
+}
