@@ -29,4 +29,4 @@ files = [
 
 result = acrolint(files)
 
-output_file(result, "acronyms.json")
+output_file("acronyms.json",result)

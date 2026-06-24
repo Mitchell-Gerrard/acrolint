@@ -1,4 +1,20 @@
 {
+    "3D": {
+        "definition": null,
+        "first_usage": [
+            78,
+            "tests/test_files/main.tex"
+        ],
+        "defined": false
+    },
+    "3DD": {
+        "definition": null,
+        "first_usage": [
+            78,
+            "tests/test_files/main.tex"
+        ],
+        "defined": false
+    },
     "SSH": {
         "definition": null,
         "first_usage": [

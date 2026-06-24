@@ -44,7 +44,7 @@ def collect_acronyms(text):
     """
     
     # Simple regex to find acronyms (uppercase letters)
-    return regex_extract(r'\b[A-Z]{2,}\b', text)
+    return regex_extract(r'\b(?:[A-Z]{2,}|[0-9]+[A-Z]+|[A-Z]+[0-9]+)\b', text)
 def find_acronym_definitions(files):
     """
     Finds acronym definitions in the given text.
@@ -56,13 +56,24 @@ def find_acronym_definitions(files):
         list: A list of all acronym definitions found.
     """
     results = []
+
     for file in files:
         text = file_text_extract(file)
-        patterns = [
-        r'([A-Z][A-Za-z\s\-&]+)\s*\(([A-Z]{2,10})\)',
-        r'\b([A-Z]{2,10})\s*\(([A-Z][A-Za-z\s\-&]+)\)']
-        for pattern in patterns:
-            results.extend(regex_extract(pattern, text))
+
+        # Full Name (ABC)
+        for definition, acronym in re.findall(
+            r'([A-Z][A-Za-z\s\-&]+)\s*\(([A-Z]{2,10})\)',
+            text
+        ):
+            results.append((acronym, definition))
+
+        # ABC (Full Name)
+        for acronym, definition in re.findall(
+            r'\b([A-Z]{2,10})\s*\(([A-Z][A-Za-z\s\-&]+)\)',
+            text
+        ):
+            results.append((acronym, definition))
+
     return results
 
 
@@ -78,19 +89,13 @@ def find_undefined_acronyms(files, defined_acronyms):
 def index_to_line(text, index):
     return text[:index].count("\n") + 1
 def firstusage(files, pattern):
-    result = []
     for file in files:
-        print(file)
         text = file_text_extract(file)
 
         for match in re.finditer(pattern, text):
-            result.append(
-                index_to_line(text, match.start())
-                )
-                
-        if match:
-            break  # Stop searching after the first match in the current file
-    return result[0], file
+            return index_to_line(text, match.start()), file
+
+    return None, None
 def output_file(file_path, orgonised_data):
     if file_path.endswith(".json"):
         import json
