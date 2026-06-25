@@ -9,3 +9,5 @@ build/
 /.venv
 /.pytest_cache
 .vscode/
+tests/to_remove.py
+tests/to_remove/

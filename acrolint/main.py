@@ -1,5 +1,31 @@
 import re
+STOP_WORDS = {
+    "a", "an", "the", "of", "in", "at", "to", "for", "and"
+}
 
+def clean_definition(definition, acronym):
+    """ Cleans the definition by removing leading junk words and taking the last N words based on acronym length.
+    
+    Args: 
+        definition (str): The definition string to clean.
+        acronym (str): The acronym associated with the definition.
+    Returns:
+        str: The cleaned definition.
+    
+    """
+    if acronym.endswith("s") and len(acronym) > 2:
+        acronym = acronym[:-1]
+    definition = definition.replace("-", " ")
+    words = definition.strip().split()
+    print(f"Cleaning definition: '{definition}' for acronym: '{acronym}'")
+    # remove leading junk words
+    words = [w for w in words if w.lower() not in STOP_WORDS]
+
+    # heuristic: take last N words based on acronym length
+    n = max(2, len(acronym))
+    words = words[-(n):]
+    print(f"Cleaned definition: '{' '.join(words)}'")
+    return " ".join(words)
 def file_text_extract(file_path):
     """
     Extracts the text content from a file.
@@ -56,22 +82,26 @@ def find_acronym_definitions(files):
         list: A list of all acronym definitions found.
     """
     results = []
+    ACRONYM_PATTERN = r"[A-Z]{2,15}s?"
+    DEFINITION_PATTERN = r"[A-Za-z][A-Za-z0-9\s\-&,/]*"
 
     for file in files:
         text = file_text_extract(file)
 
-        # Full Name (ABC)
+        # Definition (ABC)
         for definition, acronym in re.findall(
-            r'([A-Z][A-Za-z\s\-&]+)\s*\(([A-Z]{2,10})\)',
-            text
+            rf"({DEFINITION_PATTERN})\s*\(({ACRONYM_PATTERN})\)",
+            text,
         ):
+            definition = clean_definition(definition, acronym)
             results.append((acronym, definition))
 
-        # ABC (Full Name)
+        # ABC (Definition)
         for acronym, definition in re.findall(
-            r'\b([A-Z]{2,10})\s*\(([A-Z][A-Za-z\s\-&]+)\)',
-            text
+            rf"\b({ACRONYM_PATTERN})\s*\(({DEFINITION_PATTERN})\)",
+            text,
         ):
+            definition = clean_definition(definition, acronym)
             results.append((acronym, definition))
 
     return results

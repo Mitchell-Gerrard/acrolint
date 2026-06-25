@@ -3,7 +3,7 @@
         "definition": null,
         "first_usage": [
             78,
-            "tests/test_files/main.tex"
+            "tests/test_files/main copy.tex"
         ],
         "defined": false
     },
@@ -11,7 +11,7 @@
         "definition": null,
         "first_usage": [
             78,
-            "tests/test_files/main.tex"
+            "tests/test_files/main copy.tex"
         ],
         "defined": false
     },
@@ -22,6 +22,22 @@
             "tests/test_files/main.tex"
         ],
         "defined": false
+    },
+    "RDP": {
+        "definition": "Windows Remote Desktop",
+        "first_usage": [
+            78,
+            "tests/test_files/main.tex"
+        ],
+        "defined": true
+    },
+    "HCFs": {
+        "definition": "hollow core fibres",
+        "first_usage": [
+            78,
+            "tests/test_files/main.tex"
+        ],
+        "defined": true
     },
     "AI": {
         "definition": "Artificial Intelligence",
